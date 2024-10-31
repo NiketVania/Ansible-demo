@@ -1,2 +1,5 @@
+[db_servers]
 4c09e8906d2c.mylabserver.com
+
+[web_servers]
 4c09e8906d3c.mylabserver.com

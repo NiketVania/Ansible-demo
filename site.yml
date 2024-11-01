@@ -14,73 +14,23 @@
 
 - hosts: all
   become: true
-  tasks:
-
-  - name: add ssh key for po
-    tags: always
-    authorized_key:
-      user: po
-      #public key for ansible user
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCulOrkRL6Wq4KhBpjrme6xDamLZb7pfAyd8kOFc3pCfP5G23mNrx1gMqdGBNVrFhsue/1S8uwzAzJAXwpCt0GZyAfm9S0QP/xMrfkP2Pd8Z4sDZoB7dLBrH8OLVYJHTdtKooPSAFMhE+gUXPnm70crxAe2c+yzFEV6LJrKhreVm5/Usa4TL7zIm6cTwAiHzXuDuLaz6xcemRstG9PoicKLNch2TUUdvqGzdBWTdEQBnpn7glM6Pb+3rIlXS0DtWTRCVlKqfwv7zfw2dwO0dg+h2OJStAkW/MTW/7FjtX354x0+0M7KkSKIuAIG1RYKu9wZltNxB+1s1akKxT3g7oyuMLGB63x5VbA+5xGd/b6yCtQhHvD0XEkvaxP2Y2HtMxvQ3bLr5YWtkJA8kX8ECCDrI/GuIYIx0g0PGNtIZuCw598hpE6LaB943zl9b3NgLu+M9KDyz90Pnh7EMuH2qSaHK1MTUtleysdnn+cGGhcWkRTb/73NvO98/CYPP6edTWk= ansible"
+  roles:
+    - base
 
 
 - hosts: workstations
   become: true
-  tasks:
-
-  - name: install unzip package
-    package:
-      name: unzip
-      state: latest
-
-  - name: install terraform
-    unarchive:
-      src: https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
-      dest: /usr/local/bin
-      remote_src: yes
-      owner: root
-      group: root
-      mode: 0755
+  roles:
+    - workstations
 
 
 - hosts: web_servers
   become: true
-  tasks:
-
-  - name: install apache and php for Ubuntu servers
-    tags: apache2,ubuntu
-    apt:
-      name:
-        - apache2
-        - libapache2-mod-php
-      state: latest
-    when: ansible_distribution == "Ubuntu"
-
-  - name: start apache2 service(Ubuntu)
-    tags: apache2,service
-    service:
-      name: apache2
-      state: started
-      enabled: yes
-    when: ansible_distribution == "Ubuntu"
-
-  - name: copy default html file for site
-    tags: apache2
-    copy:
-      src: default_site.html
-      dest: /var/www/html/index.html
-      owner: root
-      group: root
-      mode: 0644
+  roles:
+    - web_servers
 
 
 - hosts: db_servers
   become: true
-  tasks:
-
-    - name: install mariadb package (Ubuntu)
-      tags: db,mariadb,ubuntu
-      apt:
-        name: mariadb-server
-        state: latest
-      when: ansible_distribution == "Ubuntu"
+  roles:
+    - db_servers

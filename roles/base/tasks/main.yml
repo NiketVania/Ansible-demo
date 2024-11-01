@@ -1,0 +1,6 @@
+- name: add ssh key for po
+  authorized_key:
+    user: po
+    #public key for ansible user
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCulOrkRL6Wq4KhBpjrme6xDamLZb7pfAyd8kOFc3pCfP5G23mNrx1gMqdGBNVrFhsue/1S8uwzAzJAXwpCt0GZyAfm9S0QP/xMrfkP2Pd8Z4sDZoB7dLBrH8OLVYJHTdtKooPSAFMhE+gUXPnm70crxAe2c+yzFEV6LJrKhreVm5/Usa4TL7zIm6cTwAiHzXuDuLaz6xcemRstG9PoicKLNch2TUUdvqGzdBWTdEQBnpn7glM6Pb+3rIlXS0DtWTRCVlKqfwv7zfw2dwO0dg+h2OJStAkW/MTW/7FjtX354x0+0M7KkSKIuAIG1RYKu9wZltNxB+1s1akKxT3g7oyuMLGB63x5VbA+5xGd/b6yCtQhHvD0XEkvaxP2Y2HtMxvQ3bLr5YWtkJA8kX8ECCDrI/GuIYIx0g0PGNtIZuCw598hpE6LaB943zl9b3NgLu+M9KDyz90Pnh7EMuH2qSaHK1MTUtleysdnn+cGGhcWkRTb/73NvO98/CYPP6edTWk= ansible"
+

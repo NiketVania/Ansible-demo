@@ -44,6 +44,14 @@
       state: latest
     when: ansible_distribution == "Ubuntu"
 
+  - name: start apache2 service(Ubuntu)
+    tags: apache2,service
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+    when: ansible_distribution == "Ubuntu"
+
   - name: copy default html file for site
     tags: apache2
     copy:
